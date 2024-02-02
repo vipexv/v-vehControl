@@ -8,13 +8,17 @@ interface props {
   className?: string;
   size?: number;
   strokeWidth?: number;
+  onClick?: () => void; // Step 1: Add onSubmit prop to Props interface
+  disabled?: boolean;
 }
 
 const IconButton: React.FC<props> = React.memo(
-  ({ Icon, isActive, className, size, strokeWidth }) => {
+  ({ Icon, isActive, className, size, strokeWidth, onClick, disabled }) => {
     return (
       <>
         <button
+          onClick={onClick}
+          disabled={disabled}
           className={clsx(
             "bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm",
             className

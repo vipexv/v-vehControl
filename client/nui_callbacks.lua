@@ -26,3 +26,15 @@ RegisterNuiCallback("vehmenu:toggledoor", function(doorIndex, _cb)
         SetVehicleDoorOpen(veh, doorIndex, false, false)
     end
 end)
+
+RegisterNuiCallback("vehmenu:togglewindow", function(windowIndex, _cb)
+    Debug(windowIndex)
+    local ped = PlayerPedId()
+    local veh = GetVehiclePedIsIn(ped, false)
+
+    if IsVehicleWindowIntact(veh, windowIndex) then
+        RollDownWindow(veh, windowIndex)
+    else
+        RollUpWindow(veh, windowIndex)
+    end
+end)

@@ -11,16 +11,15 @@ import React, { useEffect, useState } from "react";
 import { useNuiEvent } from "../hooks/useNuiEvent";
 import carSeatIcon from "../icons/carSeat.svg";
 import carWheelIcon from "../icons/carWheel.svg";
-import doorIcon from "../icons/cardoor.svg";
 import hoodIcon from "../icons/carhood.svg";
 import revertedDoorIcon from "../icons/dooriconreverted.svg";
 import trunkIcon from "../icons/trunk.svg";
+import { VehicleData } from "../types/VehicleData";
 import { debugData } from "../utils/debugData";
 import { fetchNui } from "../utils/fetchNui";
 import { isEnvBrowser } from "../utils/misc";
 import "./Core.css";
 import IconButton from "./Main/IconButton";
-import { VehicleData } from "../types/VehicleData";
 
 debugData([
   {
@@ -75,11 +74,22 @@ const Core: React.FC = () => {
                       Windows
                     </p>
                     <div className="grid grid-cols-2 gap-2 mb-1">
-                      <IconButton Icon={MoveVertical} isActive={false} />
-                      <IconButton Icon={MoveVertical} isActive={false} />
-                      <IconButton Icon={MoveVertical} isActive={false} />
-
-                      <IconButton Icon={MoveVertical} isActive={false} />
+                      {Array.from({
+                        length: !vehicleData?.doors ? 4 : vehicleData.doors,
+                      }).map((_, index) => {
+                        return (
+                          <>
+                            <IconButton
+                              key={index}
+                              Icon={MoveVertical}
+                              isActive={false}
+                              onClick={() => {
+                                fetchNui("vehmenu:togglewindow", index);
+                              }}
+                            />
+                          </>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>
@@ -124,12 +134,12 @@ const Core: React.FC = () => {
                       Doors
                     </p>
                     <div className="flex flex-col gap-2 items-center">
-                      {/* Hood and Trunk */}
                       <button
                         className="bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm"
                         onClick={() => {
                           fetchNui("vehmenu:toggledoor", 4);
                         }}
+                        disabled={!vehicleData?.isDriver}
                       >
                         <div
                           className="relative bottom-[5px] right-3 w-2 h-2 rounded-sm blur-[1px]"
@@ -142,8 +152,6 @@ const Core: React.FC = () => {
                           src={hoodIcon}
                         />
                       </button>
-
-                      {/* Doors */}
 
                       <div className="grid grid-cols-2 gap-2">
                         {Array.from({
@@ -178,6 +186,7 @@ const Core: React.FC = () => {
                         onClick={() => {
                           fetchNui("vehmenu:toggledoor", 5);
                         }}
+                        disabled={!vehicleData?.isDriver}
                       >
                         <div
                           className="relative bottom-[5px] right-3 w-2 h-2 rounded-sm blur-[1px]"
