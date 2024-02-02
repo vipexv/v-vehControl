@@ -209,11 +209,51 @@ const Core: React.FC = () => {
                     Miscellaneous
                   </p>
                   <div className="flex w-full justify-center items-center gap-2 text-white">
-                    <IconButton Icon={Power} isActive={false} />
-                    <IconButton Icon={ArrowLeft} isActive={false} />
-                    <IconButton Icon={AlertTriangle} isActive={false} />
-                    <IconButton Icon={ArrowRight} isActive={false} />
-                    <IconButton Icon={Lightbulb} isActive={false} />
+                    <IconButton
+                      onClick={() => {
+                        fetchNui("vehmenu:toggleoption", {
+                          option: "engine",
+                        });
+                      }}
+                      Icon={Power}
+                      isActive={false}
+                    />
+                    <IconButton
+                      onClick={() => {
+                        fetchNui("vehmenu:toggleoption", {
+                          option: "leftblinker",
+                        });
+                      }}
+                      Icon={ArrowLeft}
+                      isActive={false}
+                    />
+                    <IconButton
+                      onClick={() => {
+                        fetchNui("vehmenu:toggleoption", {
+                          option: "alert",
+                        });
+                      }}
+                      Icon={AlertTriangle}
+                      isActive={false}
+                    />
+                    <IconButton
+                      onClick={() => {
+                        fetchNui("vehmenu:toggleoption", {
+                          option: "rightblinker",
+                        });
+                      }}
+                      Icon={ArrowRight}
+                      isActive={false}
+                    />
+                    <IconButton
+                      onClick={() => {
+                        fetchNui("vehmenu:toggleoption", {
+                          option: "headlights",
+                        });
+                      }}
+                      Icon={Lightbulb}
+                      isActive={false}
+                    />
                   </div>
                 </div>
               </div>

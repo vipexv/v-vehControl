@@ -1,4 +1,2 @@
----@class Example
----@field exampleParam table
----@field exampleParam2 string
----@field exampleParam3 number
+---@class VehicleOption
+---@field option "headlights" | "rightblinker" | "alert" | "leftblinker" | "engine"

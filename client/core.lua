@@ -4,6 +4,9 @@ SendCurrentVehicleDataToNui = function()
 
   if not IsPedInAnyVehicle(sourcePed, false) then return Debug("Ped isn't in any vehicle.") end
 
+  -- Flag:CPED_CONFIG_FLAG_PreventAutoShuffleToDriversSeat
+  SetPedConfigFlag(sourcePed, 184, true)
+
   local currVeh = GetVehiclePedIsIn(sourcePed, false)
   local vehModel = GetEntityModel(currVeh)
   local vehDoors = GetVehicleMaxNumberOfPassengers(currVeh)
@@ -22,4 +25,5 @@ SendCurrentVehicleDataToNui = function()
 
   UIMessage("nui:state:vehdata", vehData)
   Debug("Vehicle Data: ", json.encode(vehData))
+  ToggleNuiFrame(true)
 end
