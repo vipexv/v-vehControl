@@ -3,7 +3,6 @@ import {
   AlertTriangle,
   ArrowLeft,
   ArrowRight,
-  Lightbulb,
   MoveVertical,
   Power,
 } from "lucide-react";
@@ -243,15 +242,6 @@ const Core: React.FC = () => {
                         });
                       }}
                       Icon={ArrowRight}
-                      isActive={false}
-                    />
-                    <IconButton
-                      onClick={() => {
-                        fetchNui("vehmenu:toggleoption", {
-                          option: "headlights",
-                        });
-                      }}
-                      Icon={Lightbulb}
                       isActive={false}
                     />
                   </div>

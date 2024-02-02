@@ -1,2 +1,2 @@
 ---@class VehicleOption
----@field option "headlights" | "rightblinker" | "alert" | "leftblinker" | "engine"
+---@field option "rightblinker" | "alert" | "leftblinker" | "engine"
