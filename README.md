@@ -1,4 +1,4 @@
-![image|649x449, 100%](upload://vwWD1tSD1OqVmPkvD73HXg07CxO.png)
+![image](https://github.com/vipexv/v-vehControl/assets/101529155/d767fa14-08f6-4100-a65b-ef12794c6d95)
 # Vehicle Control Menu
 
 ![](https://img.shields.io/github/downloads/vipexv/v-vehControl/total?logo=github)![](https://img.shields.io/github/downloads/vipexv/v-vehControl/latest/total?logo=github)![](https://img.shields.io/github/contributors/vipexv/v-vehControl?logo=github)![](https://img.shields.io/github/v/release/vipexv/v-vehControl?logo=github) 
