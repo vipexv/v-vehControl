@@ -41,3 +41,11 @@ RegisterCommand("dv", function(source, args, rawCommand)
 
     DeleteEntity(currVeh)
 end, false)
+
+
+RegisterCommand("door", function(source, args, rawCommand)
+    local ped = PlayerPedId()
+    local door = args[1]
+    local currVeh = GetVehiclePedIsIn(ped, false)
+    SetVehicleDoorOpen(currVeh, tonumber(door), false, false)
+end, false)

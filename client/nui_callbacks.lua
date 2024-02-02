@@ -15,3 +15,14 @@ RegisterNuiCallback("vehmenu:setseat", function(index, _cb)
 
     SetPedIntoVehicle(ped, veh, seatIndex)
 end)
+
+RegisterNuiCallback("vehmenu:toggledoor", function(doorIndex, _cb)
+    Debug(doorIndex)
+    local ped = PlayerPedId()
+    local veh = GetVehiclePedIsIn(ped, false)
+    if GetVehicleDoorAngleRatio(veh, doorIndex) > 0.0 then
+        SetVehicleDoorShut(veh, doorIndex, false)
+    else
+        SetVehicleDoorOpen(veh, doorIndex, false, false)
+    end
+end)

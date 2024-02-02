@@ -123,74 +123,39 @@ const Core: React.FC = () => {
                     <p className="bg-gradient-to-r px-6 py-1  mt-1 rounded-[2px] from-[#2f323d] via-[#3d3f49] to-[#292c37] text-[#2fffd2] font-bold">
                       Doors
                     </p>
-                    <div className="flex gap-1 items-center">
-                      <div className="flex flex-col gap-2">
-                        {Array.from({
-                          length: !vehicleData?.doors
-                            ? 4
-                            : vehicleData.doors - 2 / 2,
-                        }).map((_seat, index) => {
-                          return (
-                            <>
-                              <button
-                                key={index}
-                                className="bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm"
-                              >
-                                <div
-                                  className="relative bottom-[5px] right-3 w-2 h-2 rounded-sm blur-[1px]"
-                                  style={{
-                                    backgroundColor: "rgb(225 29 72 / 1)",
-                                  }}
-                                ></div>
-                                <img
-                                  className="relative bottom-[3px] w-[20px]"
-                                  src={doorIcon}
-                                />
-                              </button>
-                            </>
-                          );
-                        })}
-                      </div>
+                    <div className="flex flex-col gap-2 items-center">
                       {/* Hood and Trunk */}
-                      <div className="flex flex-col gap-2">
-                        <button className="bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm">
-                          <div
-                            className="relative bottom-[5px] right-3 w-2 h-2 rounded-sm blur-[1px]"
-                            style={{
-                              backgroundColor: "rgb(225 29 72 / 1)",
-                            }}
-                          ></div>
-                          <img
-                            className="relative bottom-[3px] w-[20px]"
-                            src={hoodIcon}
-                          />
-                        </button>
-                        <button className="bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm">
-                          <div
-                            className="relative bottom-[5px] right-3 w-2 h-2 rounded-sm blur-[1px]"
-                            style={{
-                              backgroundColor: "rgb(225 29 72 / 1)",
-                            }}
-                          ></div>
-                          <img
-                            className="relative bottom-[3px] w-[20px]"
-                            src={trunkIcon}
-                          />
-                        </button>
-                      </div>
+                      <button
+                        className="bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm"
+                        onClick={() => {
+                          fetchNui("vehmenu:toggledoor", 4);
+                        }}
+                      >
+                        <div
+                          className="relative bottom-[5px] right-3 w-2 h-2 rounded-sm blur-[1px]"
+                          style={{
+                            backgroundColor: "rgb(225 29 72 / 1)",
+                          }}
+                        ></div>
+                        <img
+                          className="relative bottom-[3px] w-[20px]"
+                          src={hoodIcon}
+                        />
+                      </button>
 
-                      {/* Doors 2 */}
+                      {/* Doors */}
 
-                      <div className="flex flex-col gap-2">
+                      <div className="grid grid-cols-2 gap-2">
                         {Array.from({
-                          length: !vehicleData?.doors
-                            ? 4
-                            : vehicleData.doors - 2 / 2,
+                          length: !vehicleData?.doors ? 4 : vehicleData.doors,
                         }).map((_seat, index) => {
                           return (
                             <>
                               <button
                                 key={index}
+                                onClick={() => {
+                                  fetchNui("vehmenu:toggledoor", index);
+                                }}
                                 className="bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm"
                               >
                                 <div
@@ -208,6 +173,23 @@ const Core: React.FC = () => {
                           );
                         })}
                       </div>
+                      <button
+                        className="bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm"
+                        onClick={() => {
+                          fetchNui("vehmenu:toggledoor", 5);
+                        }}
+                      >
+                        <div
+                          className="relative bottom-[5px] right-3 w-2 h-2 rounded-sm blur-[1px]"
+                          style={{
+                            backgroundColor: "rgb(225 29 72 / 1)",
+                          }}
+                        ></div>
+                        <img
+                          className="relative bottom-[3px] w-[20px]"
+                          src={trunkIcon}
+                        />
+                      </button>
                     </div>
                   </div>
                 </div>

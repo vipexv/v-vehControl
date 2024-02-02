@@ -10,7 +10,7 @@ SendCurrentVehicleDataToNui = function()
   local vehSeats = GetVehicleModelNumberOfSeats(vehModel)
 
   local vehData = {
-    doors = vehDoors,
+    doors = vehDoors - 2,
     seats = vehSeats,
   }
 
