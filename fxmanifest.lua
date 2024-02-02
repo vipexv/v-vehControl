@@ -21,6 +21,8 @@ client_scripts {
 	'client/commands.lua',
 }
 
+server_script "server/core.lua"
+
 files {
 	'web/dist/index.html',
 	'web/dist/**/*',
