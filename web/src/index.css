@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Rajdhani:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Rajdhani:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light !important;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  overflow: hidden;
+  background-color: transparent !important;
+}
+
+@font-face {
+  font-family: Horizon;
+  src: url("./fonts/horizon.otf");
+}
+
+@font-face {
+  font-family: Horizon_2;
+  src: url("./fonts/horizon_outlined.otf");
+}
+
+@font-face {
+  font-family: Tesla;
+  src: url("./fonts/tesla.otf");
+}
+
+@font-face {
+  font-family: Jetbrains Mono;
+  src: url("./fonts/JetBrainsMono.woff2");
+}
+
+.font-main {
+  font-family: "Rajdhani", sans-serif;
+}
+
+.font-jetmono {
+  font-family: Jetbrains Mono;
+}
+
+.font-tesla {
+  font-family: Tesla;
+}
+
+.font-roboto {
+  font-family: Roboto !important;
+}
+
+.font-horizon {
+  font-family: Horizon !important;
+}
+
+.font-horizon-2 {
+  font-family: Horizon_2 !important;
+}
+
+.font-inter {
+  font-family: Inter;
+}

@@ -1,0 +1,89 @@
+# From oxlib GitHub Repo: https://github.com/overextended/ox_lib
+
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+jobs:
+  create-release:
+    name: Build and Create Tagged Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install archive tools
+        run: sudo apt install zip
+
+      - name: Checkout source code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.repository.default_branch }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8.15.1
+
+      - name: Install dependencies
+        run: cd web && pnpm i
+
+      # - name: Bump package version
+      #   run: npm version ${{ github.ref_name }}
+      #   working-directory: web
+
+      - name: Run build
+        run: pnpm run build
+        working-directory: web
+        env:
+          CI: false
+
+      # - name: Bump manifest version
+      #   run: node .github/actions/bump-manifest-version.js
+      #   env:
+      #     TGT_RELEASE_VERSION: ${{ github.ref_name }}
+
+      # - name: Push manifest change
+      #   uses: EndBug/add-and-commit@v8
+      #   with:
+      #     add: fxmanifest.lua
+      #     push: true
+      #     author_name: Manifest Bumper
+      #     author_email: 41898282+github-actions[bot]@users.noreply.github.com
+      #     message: 'chore: bump manifest version to ${{ github.ref_name }}'
+
+      - name: Update tag ref
+        uses: EndBug/latest-tag@latest
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Bundle files
+        run: |
+          ls
+          mkdir -p ./temp/v-staffchat
+          mkdir -p ./temp/v-staffchat/web/
+          cp ./{LICENSE,README.md,fxmanifest.lua,config.lua,sv_config.lua} ./temp/v-staffchat
+          cp -r ./{client,locales,server,shared} ./temp/v-staffchat
+          cp -r ./web/dist ./temp/v-staffchat/web/
+          cd ./temp && zip -r ../v-staffchat.zip ./v-staffchat
+
+      - name: Create Release
+        uses: "marvinpinto/action-automatic-releases@v1.2.1"
+        id: auto_release
+        with:
+          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          title: ${{ env.RELEASE_VERSION }}
+          prerelease: false
+          files: v-staffchat.zip
+
+        env:
+          CI: false
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # - name: Publish npm package
+      #   uses: JS-DevTools/npm-publish@v1
+      #   with:
+      #     token: ${{ secrets.NPM_TOKEN }}
+      #     package: './package/package.json'
+      #     access: 'public'

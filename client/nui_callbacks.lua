@@ -1,0 +1,5 @@
+RegisterNuiCallback('hideFrame', function(_, cb)
+    ToggleNuiFrame(false)
+    Debug('[nuicb:hideFrame] called')
+    cb({})
+end)
