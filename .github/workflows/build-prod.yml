@@ -64,7 +64,7 @@ jobs:
           mkdir -p ./temp/v-vehControl
           mkdir -p ./temp/v-vehControl/web/
           cp ./{LICENSE,README.md,fxmanifest.lua,config.lua} ./temp/v-vehControl
-          cp -r ./{client,shared} ./temp/v-vehControl
+          cp -r ./{client,server,shared} ./temp/v-vehControl
           cp -r ./web/dist ./temp/v-vehControl/web/
           cd ./temp && zip -r ../v-vehControl.zip ./v-vehControl
 
