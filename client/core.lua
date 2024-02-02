@@ -6,8 +6,14 @@ SendCurrentVehicleDataToNui = function()
 
   local currVeh = GetVehiclePedIsIn(pedId, false)
   local vehModel = GetEntityModel(currVeh)
+  local vehDoors = GetNumberOfVehicleDoors(currVeh)
+  local vehSeats = GetVehicleModelNumberOfSeats(vehModel)
 
-  local vehicleSeats = GetVehicleModelNumberOfSeats(vehModel)
+  local vehData = {
+    doors = vehDoors,
+    seats = vehSeats,
+  }
 
-  Debug("vehicleSeats: ", json.encode(vehicleSeats))
+  UIMessage("nui:state:vehdata", vehData)
+  Debug("Vehicle Data: ", json.encode(vehData))
 end

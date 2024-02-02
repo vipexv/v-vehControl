@@ -1,5 +1,5 @@
 RegisterCommand("vehmenu", function()
-    -- ToggleNuiFrame(true)
+    ToggleNuiFrame(true)
     SendCurrentVehicleDataToNui()
 
     Debug("[command:show-nui] ToggleNuiFrame called and set to true.")
@@ -11,6 +11,16 @@ RegisterCommand("car", function(source, args, rawCommand)
     local ped = PlayerPedId()
     local pedCoords = GetEntityCoords(ped)
     local pedHeading = GetEntityHeading(ped)
+    local isInVeh = IsPedInAnyVehicle(ped, false)
+
+    if isInVeh then
+        local currVeh = GetVehiclePedIsIn(ped, false)
+
+        SetEntityAsNoLongerNeeded(currVeh)
+        SetModelAsNoLongerNeeded(currVeh)
+
+        DeleteEntity(currVeh)
+    end
 
     RequestModel(carModel)
 
