@@ -13,7 +13,6 @@ RegisterNuiCallback("vehmenu:setseat", function(index, _cb)
         return Debug("Veh seat isn't free.")
     end
 
-
     SetPedIntoVehicle(ped, veh, seatIndex)
     SendCurrentVehicleDataToNui(true)
 end)
@@ -30,7 +29,6 @@ RegisterNuiCallback("vehmenu:toggledoor", function(doorIndex, _cb)
 end)
 
 RegisterNuiCallback("vehmenu:togglewindow", function(windowIndex, _cb)
-    Debug(windowIndex)
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsIn(ped, false)
 
