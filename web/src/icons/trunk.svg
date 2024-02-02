@@ -1,0 +1,18 @@
+<svg viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg"
+  fill="#ffffff" stroke="#ffffff">
+  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+  <g id="SVGRepo_iconCarrier">
+    <defs>
+      <style>.cls-1{fill:none;stroke:#ffffff;stroke-miterlimit:10;stroke-width:1.91px;}</style>
+    </defs>
+    <path class="cls-1"
+      d="M13.89,7.28H8.15a1.92,1.92,0,0,0-1.53.77L4.33,11.11l-2.87,1V17.8H4.33a1.91,1.91,0,1,1,3.82,0h6.7a1.91,1.91,0,0,1,3.82,0H22.5V13l-4.78-1.91-2.3-3.06A1.92,1.92,0,0,0,13.89,7.28Z"></path>
+    <circle class="cls-1" cx="16.76" cy="17.8" r="1.91"></circle>
+    <circle class="cls-1" cx="6.24" cy="17.8" r="1.91"></circle>
+    <line class="cls-1" x1="20.1" y1="12.07" x2="7.2" y2="12.07"></line>
+    <line class="cls-1" x1="20.59" y1="14.93" x2="22.5" y2="14.93"></line>
+    <line class="cls-1" x1="11.98" y1="12.07" x2="11.98" y2="9.2"></line>
+    <polyline class="cls-1" points="0.5 7.28 2.41 7.28 4.33 11.11"></polyline>
+  </g>
+</svg>
