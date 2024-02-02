@@ -70,4 +70,17 @@ RegisterNuiCallback("vehmenu:toggleoption", function(data, cb)
         SetVehicleIndicatorLights(currVeh, 1, lightsStateBool)
         return
     end
+
+    if option == "alert" then
+        local lightsState = GetVehicleIndicatorLights(currVeh)
+
+        if lightsState ~= 3 then
+            SetVehicleIndicatorLights(currVeh, 0, true)
+            SetVehicleIndicatorLights(currVeh, 1, true)
+        else
+            SetVehicleIndicatorLights(currVeh, 0, false)
+            SetVehicleIndicatorLights(currVeh, 1, false)
+        end
+        return
+    end
 end)
