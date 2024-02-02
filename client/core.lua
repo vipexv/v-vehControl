@@ -9,16 +9,19 @@ SendCurrentVehicleDataToNui = function()
 
   local currVeh = GetVehiclePedIsIn(sourcePed, false)
   local vehModel = GetEntityModel(currVeh)
-  local vehDoors = GetVehicleMaxNumberOfPassengers(currVeh)
+
+  -- Add a +1 for the driver as well.
+  local vehDoors = GetVehicleMaxNumberOfPassengers(currVeh) + 1
+  -- Remove 2, it counts the hood/trunk if any.
+  local vehDoorsAlternative = GetNumberOfVehicleDoors(currVeh) - 2
   local vehSeats = GetVehicleModelNumberOfSeats(vehModel)
   local pedInDriverSeat = GetPedInVehicleSeat(currVeh, -1)
   local isDriver = pedInDriverSeat == sourcePed
 
-  -- TODO: [Needs testing, i've attempted a fix] While using the GetNumberOfVehicleDoors func, it returns the trunk and hood included with the doors. (Needs to be better, some cars don't have one)
+  local doors = vehDoors > 4 and vehDoorsAlternative or vehDoors
 
-  -- Add a +1 for the driver as well.
   local vehData = {
-    doors = vehDoors + 1,
+    doors = doors,
     seats = vehSeats,
     isDriver = isDriver,
   }

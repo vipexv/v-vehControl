@@ -1,3 +1,4 @@
 Config = {
-    Debug = true
+    Debug = false,
+    CommandName = "vehmenu",
 }

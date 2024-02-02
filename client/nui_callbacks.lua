@@ -56,8 +56,6 @@ RegisterNuiCallback("vehmenu:toggleoption", function(data, cb)
     if option == "rightblinker" then
         local lightsState = GetVehicleIndicatorLights(currVeh)
         local lightsStateBool = lightsState ~= 2 and lightsState ~= 3
-        Debug(lightsStateBool)
-
         SetVehicleIndicatorLights(currVeh, 0, lightsStateBool)
         return
     end
@@ -65,8 +63,6 @@ RegisterNuiCallback("vehmenu:toggleoption", function(data, cb)
     if option == "leftblinker" then
         local lightsState = GetVehicleIndicatorLights(currVeh)
         local lightsStateBool = lightsState ~= 1 and lightsState ~= 3
-        Debug(lightsStateBool)
-
         SetVehicleIndicatorLights(currVeh, 1, lightsStateBool)
         return
     end
