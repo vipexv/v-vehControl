@@ -82,6 +82,7 @@ const Core: React.FC = () => {
                               key={index}
                               Icon={MoveVertical}
                               isActive={false}
+                              disabled={!vehicleData?.isDriver}
                               onClick={() => {
                                 fetchNui("vehmenu:togglewindow", index);
                               }}
@@ -103,24 +104,14 @@ const Core: React.FC = () => {
                       }).map((_seat, index) => {
                         return (
                           <>
-                            <button
+                            <IconButton
                               key={index}
                               onClick={() => {
                                 fetchNui("vehmenu:setseat", index);
                               }}
-                              className="bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm"
-                            >
-                              <div
-                                className="relative bottom-[5px] right-3 w-2 h-2 rounded-sm blur-[1px]"
-                                style={{
-                                  backgroundColor: "rgb(225 29 72 / 1)",
-                                }}
-                              ></div>
-                              <img
-                                className="relative bottom-[3px] w-[20px]"
-                                src={index === 0 ? carWheelIcon : carSeatIcon}
-                              />
-                            </button>
+                              isActive={false}
+                              svg={index === 0 ? carWheelIcon : carSeatIcon}
+                            />
                           </>
                         );
                       })}
@@ -133,24 +124,14 @@ const Core: React.FC = () => {
                       Doors
                     </p>
                     <div className="flex flex-col gap-2 items-center">
-                      <button
-                        className="bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm"
+                      <IconButton
                         onClick={() => {
                           fetchNui("vehmenu:toggledoor", 4);
                         }}
                         disabled={!vehicleData?.isDriver}
-                      >
-                        <div
-                          className="relative bottom-[5px] right-3 w-2 h-2 rounded-sm blur-[1px]"
-                          style={{
-                            backgroundColor: "rgb(225 29 72 / 1)",
-                          }}
-                        ></div>
-                        <img
-                          className="relative bottom-[3px] w-[20px]"
-                          src={hoodIcon}
-                        />
-                      </button>
+                        isActive={false}
+                        svg={hoodIcon}
+                      />
 
                       <div className="grid grid-cols-2 gap-2">
                         {Array.from({
@@ -158,46 +139,27 @@ const Core: React.FC = () => {
                         }).map((_seat, index) => {
                           return (
                             <>
-                              <button
+                              <IconButton
                                 key={index}
                                 onClick={() => {
                                   fetchNui("vehmenu:toggledoor", index);
                                 }}
-                                className="bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm"
-                              >
-                                <div
-                                  className="relative bottom-[5px] right-3 w-2 h-2 rounded-sm blur-[1px]"
-                                  style={{
-                                    backgroundColor: "rgb(225 29 72 / 1)",
-                                  }}
-                                ></div>
-                                <img
-                                  className="relative bottom-[3px] w-[20px]"
-                                  src={revertedDoorIcon}
-                                />
-                              </button>
+                                disabled={!vehicleData?.isDriver}
+                                isActive={false}
+                                svg={revertedDoorIcon}
+                              />
                             </>
                           );
                         })}
                       </div>
-                      <button
-                        className="bg-gradient-to-r from-[#3c3d46] to-[#3c3d46] py-2 px-4 border-[2px] border-[#6c6d75] rounded-sm"
+                      <IconButton
                         onClick={() => {
                           fetchNui("vehmenu:toggledoor", 5);
                         }}
                         disabled={!vehicleData?.isDriver}
-                      >
-                        <div
-                          className="relative bottom-[5px] right-3 w-2 h-2 rounded-sm blur-[1px]"
-                          style={{
-                            backgroundColor: "rgb(225 29 72 / 1)",
-                          }}
-                        ></div>
-                        <img
-                          className="relative bottom-[3px] w-[20px]"
-                          src={trunkIcon}
-                        />
-                      </button>
+                        isActive={false}
+                        svg={trunkIcon}
+                      />
                     </div>
                   </div>
                 </div>
@@ -215,6 +177,7 @@ const Core: React.FC = () => {
                         });
                       }}
                       Icon={Power}
+                      disabled={!vehicleData?.isDriver}
                       isActive={false}
                     />
                     <IconButton
@@ -224,6 +187,7 @@ const Core: React.FC = () => {
                         });
                       }}
                       Icon={ArrowLeft}
+                      disabled={!vehicleData?.isDriver}
                       isActive={false}
                     />
                     <IconButton
@@ -233,6 +197,7 @@ const Core: React.FC = () => {
                         });
                       }}
                       Icon={AlertTriangle}
+                      disabled={!vehicleData?.isDriver}
                       isActive={false}
                     />
                     <IconButton
@@ -242,6 +207,7 @@ const Core: React.FC = () => {
                         });
                       }}
                       Icon={ArrowRight}
+                      disabled={!vehicleData?.isDriver}
                       isActive={false}
                     />
                   </div>

@@ -1,4 +1,5 @@
-SendCurrentVehicleDataToNui = function()
+---@param updateData? boolean
+SendCurrentVehicleDataToNui = function(updateData)
   local sourcePed = PlayerPedId()
   local playerId = PlayerId()
 
@@ -28,5 +29,8 @@ SendCurrentVehicleDataToNui = function()
 
   UIMessage("nui:state:vehdata", vehData)
   Debug("Vehicle Data: ", json.encode(vehData))
+
+  if updateData then return end
+
   ToggleNuiFrame(true)
 end

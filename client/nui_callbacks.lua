@@ -13,7 +13,9 @@ RegisterNuiCallback("vehmenu:setseat", function(index, _cb)
         return Debug("Veh seat isn't free.")
     end
 
+
     SetPedIntoVehicle(ped, veh, seatIndex)
+    SendCurrentVehicleDataToNui(true)
 end)
 
 RegisterNuiCallback("vehmenu:toggledoor", function(doorIndex, _cb)
