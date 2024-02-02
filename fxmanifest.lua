@@ -21,15 +21,6 @@ client_scripts {
 	'client/commands.lua',
 }
 
-server_scripts {
-	"server/sv_utils.lua",
-	"server/modules/**/*",
-	"server/classes/**/*",
-	"server/core.lua",
-	"server/events.lua",
-	"server/commands.lua",
-}
-
 files {
 	'web/dist/index.html',
 	'web/dist/**/*',
