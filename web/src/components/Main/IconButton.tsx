@@ -1,15 +1,17 @@
-import { LucideIcon } from "lucide-react";
-import React from "react";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx } from "clsx";
+import React from "react";
 
 interface props {
-  Icon: LucideIcon;
+  Icon: any;
   isActive: boolean;
   className?: string;
+  size?: number;
+  strokeWidth?: number;
 }
 
 const IconButton: React.FC<props> = React.memo(
-  ({ Icon, isActive, className }) => {
+  ({ Icon, isActive, className, size, strokeWidth }) => {
     return (
       <>
         <button
@@ -26,7 +28,11 @@ const IconButton: React.FC<props> = React.memo(
                 : "rgb(225 29 72 / 1)",
             }}
           ></div>
-          <Icon className="relative bottom-[3px]" size={16} strokeWidth={3} />
+          <Icon
+            className="relative bottom-[3px]"
+            size={!size ? 18 : size}
+            strokeWidth={!strokeWidth ? 3 : strokeWidth}
+          />
         </button>
       </>
     );
