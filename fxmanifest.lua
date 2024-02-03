@@ -8,7 +8,8 @@ ui_page 'web/dist/index.html'
 shared_scripts {
 	"config.lua",
 	"shared/main.lua",
-	"shared/types.lua"
+	"shared/types.lua",
+	-- 'dev_testing/shared/**/*' Only use for development purpose.
 }
 
 client_scripts {
@@ -19,10 +20,13 @@ client_scripts {
 	'client/events.lua',
 	'client/nui_callbacks.lua',
 	'client/commands.lua',
-	'client/debug/**/*'
+	-- 'dev_testing/client/**/*' Only use for development purpose.
 }
 
-server_script "server/core.lua"
+server_scripts {
+	"server/core.lua",
+	-- "dev_testing/server/**/*" Only use for development purpose.
+}
 
 files {
 	'web/dist/index.html',
