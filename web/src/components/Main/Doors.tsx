@@ -1,9 +1,9 @@
 import React from "react";
 import { VehicleData } from "../../types/VehicleData";
 import { fetchNui } from "../../utils/fetchNui";
-import hoodIcon from "../icons/carhood.svg";
-import revertedDoorIcon from "../icons/dooriconreverted.svg";
-import trunkIcon from "../icons/trunk.svg";
+import hoodIcon from "../../icons/carhood.svg";
+import revertedDoorIcon from "../../icons/dooriconreverted.svg";
+import trunkIcon from "../../icons/trunk.svg";
 import IconButton from "./IconButton";
 
 interface Props {

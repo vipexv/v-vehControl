@@ -1,8 +1,8 @@
 import React from "react";
 import { VehicleData } from "../../types/VehicleData";
 import { fetchNui } from "../../utils/fetchNui";
-import carSeatIcon from "../icons/carSeat.svg";
-import carWheelIcon from "../icons/carWheel.svg";
+import carSeatIcon from "../../icons/carSeat.svg";
+import carWheelIcon from "../../icons/carWheel.svg";
 import IconButton from "./IconButton";
 
 interface Props {
