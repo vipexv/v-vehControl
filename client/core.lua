@@ -76,3 +76,8 @@ SendCurrentVehicleDataToNui = function(updateData)
 
   ToggleNuiFrame(true)
 end
+
+
+if Config.Keybind.enabled then
+  RegisterKeyMapping(Config.CommandName, "Open the Vehicle Control Menu", "keyboard", Config.Keybind.key)
+end
