@@ -18,7 +18,6 @@ RegisterNuiCallback("vehmenu:setseat", function(index, _cb)
 end)
 
 RegisterNuiCallback("vehmenu:toggledoor", function(doorIndex, _cb)
-    Debug(doorIndex)
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsIn(ped, false)
     if GetVehicleDoorAngleRatio(veh, doorIndex) > 0.0 then
@@ -26,6 +25,10 @@ RegisterNuiCallback("vehmenu:toggledoor", function(doorIndex, _cb)
     else
         SetVehicleDoorOpen(veh, doorIndex, false, false)
     end
+
+    SetTimeout(650, function()
+        SendCurrentVehicleDataToNui(true)
+    end)
 end)
 
 RegisterNuiCallback("vehmenu:togglewindow", function(windowIndex, _cb)
@@ -37,34 +40,34 @@ RegisterNuiCallback("vehmenu:togglewindow", function(windowIndex, _cb)
     else
         RollUpWindow(veh, windowIndex)
     end
+    SendCurrentVehicleDataToNui(true)
 end)
 
----comment
 ---@param data VehicleOption
 RegisterNuiCallback("vehmenu:toggleoption", function(data, cb)
     local option = data.option
     local ped = PlayerPedId()
     local currVeh = GetVehiclePedIsIn(ped, false)
+    local delay = 0
 
     if option == "engine" then
         local engineRunning = GetIsVehicleEngineRunning(currVeh)
         SetVehicleEngineOn(currVeh, not engineRunning, false, true)
         Debug("Engine set to: ", not engineRunning)
-        return
+        -- The engine takes a bit to start up, updating state after that.
+        delay = 1000
     end
 
     if option == "rightblinker" then
         local lightsState = GetVehicleIndicatorLights(currVeh)
         local lightsStateBool = lightsState ~= 2 and lightsState ~= 3
         SetVehicleIndicatorLights(currVeh, 0, lightsStateBool)
-        return
     end
 
     if option == "leftblinker" then
         local lightsState = GetVehicleIndicatorLights(currVeh)
         local lightsStateBool = lightsState ~= 1 and lightsState ~= 3
         SetVehicleIndicatorLights(currVeh, 1, lightsStateBool)
-        return
     end
 
     if option == "alert" then
@@ -77,6 +80,14 @@ RegisterNuiCallback("vehmenu:toggleoption", function(data, cb)
             SetVehicleIndicatorLights(currVeh, 0, false)
             SetVehicleIndicatorLights(currVeh, 1, false)
         end
+    end
+
+    if delay > 0 then
+        SetTimeout(delay, function()
+            SendCurrentVehicleDataToNui(true)
+        end)
         return
     end
+
+    SendCurrentVehicleDataToNui(true)
 end)

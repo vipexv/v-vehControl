@@ -25,7 +25,7 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
               }}
               Icon={Power}
               disabled={!vehicleData?.isDriver}
-              isActive={false}
+              isActive={!!vehicleData?.engineOn}
             />
             <IconButton
               onClick={() => {
@@ -35,7 +35,9 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
               }}
               Icon={ArrowLeft}
               disabled={!vehicleData?.isDriver}
-              isActive={false}
+              isActive={[1, 3].includes(
+                vehicleData?.indicatorLights ? vehicleData?.indicatorLights : 0
+              )}
             />
             <IconButton
               onClick={() => {
@@ -45,7 +47,7 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
               }}
               Icon={AlertTriangle}
               disabled={!vehicleData?.isDriver}
-              isActive={false}
+              isActive={vehicleData?.indicatorLights === 3}
             />
             <IconButton
               onClick={() => {
@@ -55,7 +57,9 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
               }}
               Icon={ArrowRight}
               disabled={!vehicleData?.isDriver}
-              isActive={false}
+              isActive={[2, 3].includes(
+                vehicleData?.indicatorLights ? vehicleData?.indicatorLights : 0
+              )}
             />
           </div>
         </div>

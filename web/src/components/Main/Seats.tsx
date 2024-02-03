@@ -1,8 +1,8 @@
 import React from "react";
-import { VehicleData } from "../../types/VehicleData";
-import { fetchNui } from "../../utils/fetchNui";
 import carSeatIcon from "../../icons/carSeat.svg";
 import carWheelIcon from "../../icons/carWheel.svg";
+import { VehicleData } from "../../types/VehicleData";
+import { fetchNui } from "../../utils/fetchNui";
 import IconButton from "./IconButton";
 
 interface Props {
@@ -10,6 +10,7 @@ interface Props {
 }
 
 const Seats: React.FC<Props> = React.memo(({ vehicleData }) => {
+  const currentSeat = !vehicleData?.currSeat ? 1 : vehicleData.currSeat + 1;
   return (
     <>
       <div className="bg-gradient-to-r from-[#222530] to-[#1d212b] flex-grow px-4 py-1 rounded-[2px]">
@@ -28,7 +29,7 @@ const Seats: React.FC<Props> = React.memo(({ vehicleData }) => {
                     onClick={() => {
                       fetchNui("vehmenu:setseat", index);
                     }}
-                    isActive={false}
+                    isActive={currentSeat === index}
                     svg={index === 0 ? carWheelIcon : carSeatIcon}
                   />
                 </>

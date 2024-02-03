@@ -1,9 +1,9 @@
 import React from "react";
-import { VehicleData } from "../../types/VehicleData";
-import { fetchNui } from "../../utils/fetchNui";
 import hoodIcon from "../../icons/carhood.svg";
 import revertedDoorIcon from "../../icons/dooriconreverted.svg";
 import trunkIcon from "../../icons/trunk.svg";
+import { VehicleData } from "../../types/VehicleData";
+import { fetchNui } from "../../utils/fetchNui";
 import IconButton from "./IconButton";
 
 interface Props {
@@ -11,6 +11,8 @@ interface Props {
 }
 
 const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
+  const openDoors = !vehicleData?.openDoors ? [0, 1] : vehicleData.openDoors;
+
   return (
     <>
       <div className="bg-gradient-to-r from-[#222530] to-[#1d212b] flex-grow px-4 py-1 rounded-[2px]">
@@ -24,7 +26,7 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
                 fetchNui("vehmenu:toggledoor", 4);
               }}
               disabled={!vehicleData?.isDriver}
-              isActive={false}
+              isActive={openDoors.includes(4)}
               svg={hoodIcon}
             />
 
@@ -40,7 +42,7 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
                         fetchNui("vehmenu:toggledoor", index);
                       }}
                       disabled={!vehicleData?.isDriver}
-                      isActive={false}
+                      isActive={openDoors.includes(index)}
                       svg={revertedDoorIcon}
                     />
                   </>
@@ -52,7 +54,7 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
                 fetchNui("vehmenu:toggledoor", 5);
               }}
               disabled={!vehicleData?.isDriver}
-              isActive={false}
+              isActive={openDoors.includes(5)}
               svg={trunkIcon}
             />
           </div>

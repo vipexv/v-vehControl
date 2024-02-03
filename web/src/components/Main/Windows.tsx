@@ -1,6 +1,6 @@
+import { MoveVertical } from "lucide-react";
 import React from "react";
 import { VehicleData } from "../../types/VehicleData";
-import { MoveVertical } from "lucide-react";
 import { fetchNui } from "../../utils/fetchNui";
 import IconButton from "./IconButton";
 
@@ -9,6 +9,9 @@ interface Props {
 }
 
 const Windows: React.FC<Props> = React.memo(({ vehicleData }) => {
+  const windows = !vehicleData?.closedWindows
+    ? [0, 1]
+    : vehicleData.closedWindows;
   return (
     <>
       <div className="bg-gradient-to-r from-[#222530] to-[#1d212b] h-fit  px-4 py-1 rounded-[2px]">
@@ -25,7 +28,7 @@ const Windows: React.FC<Props> = React.memo(({ vehicleData }) => {
                   <IconButton
                     key={index}
                     Icon={MoveVertical}
-                    isActive={false}
+                    isActive={!windows.includes(index)}
                     disabled={!vehicleData?.isDriver}
                     onClick={() => {
                       fetchNui("vehmenu:togglewindow", index);
