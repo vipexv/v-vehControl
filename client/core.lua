@@ -49,7 +49,7 @@ SendCurrentVehicleDataToNui = function(updateData)
 
   --Trunk and Hood | Code quality isn't the best but we will work on it in the future, it works for now.
   local isHoodOpen = GetVehicleDoorAngleRatio(currVeh, 4) > 0.0
-  local isTrunkOpen = GetVehicleDoorAngleRatio(currVeh, 5) > 0.
+  local isTrunkOpen = GetVehicleDoorAngleRatio(currVeh, 5) > 0.0
 
   if isHoodOpen then
     openDoors[#openDoors + 1] = 4

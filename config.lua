@@ -2,7 +2,7 @@ Config = {
     Debug = true,
     CommandName = "vehmenu",
     Keybind = {
-        enabled = false,
+        enabled = true,
         key = "Y" -- The Key to opening the menu if enabled.
     }
 }
