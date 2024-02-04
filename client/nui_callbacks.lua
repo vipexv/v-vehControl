@@ -31,6 +31,11 @@ RegisterNuiCallback("vehmenu:toggledoor", function(doorIndex, _cb)
     end)
 end)
 
+RegisterNuiCallback("vehmenu:togglefocus", function(bool, cb)
+    SetNuiFocus(true, bool)
+    cb({})
+end)
+
 RegisterNuiCallback("vehmenu:togglewindow", function(windowIndex, _cb)
     local ped = PlayerPedId()
     local veh = GetVehiclePedIsIn(ped, false)

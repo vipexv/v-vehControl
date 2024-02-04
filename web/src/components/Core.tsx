@@ -1,4 +1,5 @@
 import { Transition } from "@mantine/core";
+import clsx from "clsx";
 import React, { useEffect, useState } from "react";
 import { useNuiEvent } from "../hooks/useNuiEvent";
 import { VehicleData } from "../types/VehicleData";
@@ -24,6 +25,8 @@ const Core: React.FC = () => {
     undefined
   );
 
+  const [focusMode, setFocusMode] = useState(false);
+
   useNuiEvent("nui:state:vehdata", setVehicleData);
 
   useNuiEvent<boolean>("setVisible", setVisible);
@@ -38,9 +41,35 @@ const Core: React.FC = () => {
       }
     };
 
+    // const handleContextMenu = (e: MouseEvent) => {
+    //   e.preventDefault(); // Prevent default right-click behavior
+    //   console.log("Entered right click mode");
+    // };
+
+    const handleMouseDown = (e: MouseEvent) => {
+      if (e.button === 2) {
+        fetchNui("vehmenu:togglefocus", false);
+        setFocusMode(true);
+      }
+    };
+
+    const handleMouseUp = (e: MouseEvent) => {
+      if (e.button === 2) {
+        fetchNui("vehmenu:togglefocus", true);
+        setFocusMode(false);
+      }
+    };
+
     window.addEventListener("keydown", keyHandler);
 
-    return () => window.removeEventListener("keydown", keyHandler);
+    window.addEventListener("mousedown", handleMouseDown);
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("keydown", keyHandler);
+      window.removeEventListener("mousedown", handleMouseDown);
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
   }, [visible]);
 
   return (
@@ -56,8 +85,13 @@ const Core: React.FC = () => {
             style={styles}
             className="flex w-[100dvw] h-[100dvh] justify-center items-end"
           >
-            <div className="flex flex-col gap-2 mb-10 justify-center items-center">
-              <div className="flex items-end  gap-4 text-white">
+            <div
+              className={clsx(
+                "flex flex-col gap-2 mb-10 justify-center items-center",
+                focusMode && "opacity-25"
+              )}
+            >
+              <div className="flex items-end gap-4 text-white">
                 <Windows vehicleData={vehicleData} />
                 <Seats vehicleData={vehicleData} />
                 <Doors vehicleData={vehicleData} />
