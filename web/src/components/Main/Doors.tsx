@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import hoodIcon from "../../icons/carhood.svg";
 import revertedDoorIcon from "../../icons/dooriconreverted.svg";
 import trunkIcon from "../../icons/trunk.svg";
@@ -13,6 +13,18 @@ interface Props {
 const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
   const openDoors = !vehicleData?.openDoors ? [0, 1] : vehicleData.openDoors;
 
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const handleButtonClick = (index: number) => {
+    if (!isButtonDisabled) {
+      setIsButtonDisabled(true);
+      fetchNui("vehmenu:toggledoor", index);
+      setTimeout(() => {
+        setIsButtonDisabled(false);
+      }, 500);
+    }
+  };
+
   return (
     <>
       <div className="bg-gradient-to-r from-[#222530] to-[#1d212b] flex-grow px-4 py-1 rounded-[2px]">
@@ -23,9 +35,9 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
           <div className="flex flex-col gap-2 items-center">
             <IconButton
               onClick={() => {
-                fetchNui("vehmenu:toggledoor", 4);
+                handleButtonClick(4);
               }}
-              disabled={!vehicleData?.isDriver}
+              disabled={!vehicleData?.isDriver || isButtonDisabled}
               isActive={openDoors.includes(4)}
               svg={hoodIcon}
             />
@@ -39,9 +51,9 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
                     <IconButton
                       key={index}
                       onClick={() => {
-                        fetchNui("vehmenu:toggledoor", index);
+                        handleButtonClick(index);
                       }}
-                      disabled={!vehicleData?.isDriver}
+                      disabled={!vehicleData?.isDriver || isButtonDisabled}
                       isActive={openDoors.includes(index)}
                       svg={revertedDoorIcon}
                     />
@@ -51,9 +63,9 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
             </div>
             <IconButton
               onClick={() => {
-                fetchNui("vehmenu:toggledoor", 5);
+                handleButtonClick(5);
               }}
-              disabled={!vehicleData?.isDriver}
+              disabled={!vehicleData?.isDriver || isButtonDisabled}
               isActive={openDoors.includes(5)}
               svg={trunkIcon}
             />

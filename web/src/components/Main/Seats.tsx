@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import carSeatIcon from "../../icons/carSeat.svg";
 import carWheelIcon from "../../icons/carWheel.svg";
 import { VehicleData } from "../../types/VehicleData";
@@ -11,6 +11,19 @@ interface Props {
 
 const Seats: React.FC<Props> = React.memo(({ vehicleData }) => {
   const currentSeat = !vehicleData?.currSeat ? 1 : vehicleData.currSeat + 1;
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const handleButtonClick = (index: number) => {
+    if (!isButtonDisabled) {
+      setIsButtonDisabled(true);
+      fetchNui("vehmenu:setseat", index);
+      setTimeout(() => {
+        setIsButtonDisabled(false);
+      }, 500);
+    }
+  };
+
   return (
     <>
       <div className="bg-gradient-to-r from-[#222530] to-[#1d212b] flex-grow px-4 py-1 rounded-[2px]">
@@ -27,8 +40,9 @@ const Seats: React.FC<Props> = React.memo(({ vehicleData }) => {
                   <IconButton
                     key={index}
                     onClick={() => {
-                      fetchNui("vehmenu:setseat", index);
+                      handleButtonClick(index);
                     }}
+                    disabled={isButtonDisabled}
                     isActive={currentSeat === index}
                     svg={index === 0 ? carWheelIcon : carSeatIcon}
                   />

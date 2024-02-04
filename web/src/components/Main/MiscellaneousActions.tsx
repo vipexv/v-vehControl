@@ -5,7 +5,7 @@ import {
   Lightbulb,
   Power,
 } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { VehicleData } from "../../types/VehicleData";
 import { fetchNui } from "../../utils/fetchNui";
 import IconButton from "./IconButton";
@@ -15,6 +15,18 @@ interface Props {
 }
 
 const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const handleButtonClick = (option: object) => {
+    if (!isButtonDisabled) {
+      setIsButtonDisabled(true);
+      fetchNui("vehmenu:toggleoption", option);
+      setTimeout(() => {
+        setIsButtonDisabled(false);
+      }, 500);
+    }
+  };
+
   return (
     <>
       <div className="bg-gradient-to-r from-[#222530] to-[#1d212b] w-full h-[10dvh] rounded-[2px]">
@@ -25,56 +37,56 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
           <div className="flex w-full justify-center items-center gap-2 text-white">
             <IconButton
               onClick={() => {
-                fetchNui("vehmenu:toggleoption", {
+                handleButtonClick({
                   option: "engine",
                 });
               }}
               Icon={Power}
-              disabled={!vehicleData?.isDriver}
+              disabled={!vehicleData?.isDriver || isButtonDisabled}
               isActive={!!vehicleData?.engineOn}
             />
             <IconButton
               onClick={() => {
-                fetchNui("vehmenu:toggleoption", {
+                handleButtonClick({
                   option: "left_blinker",
                 });
               }}
               Icon={ArrowLeft}
-              disabled={!vehicleData?.isDriver}
+              disabled={!vehicleData?.isDriver || isButtonDisabled}
               isActive={[1, 3].includes(
                 vehicleData?.indicatorLights ? vehicleData?.indicatorLights : 0
               )}
             />
             <IconButton
               onClick={() => {
-                fetchNui("vehmenu:toggleoption", {
+                handleButtonClick({
                   option: "alert",
                 });
               }}
               Icon={AlertTriangle}
-              disabled={!vehicleData?.isDriver}
+              disabled={!vehicleData?.isDriver || isButtonDisabled}
               isActive={vehicleData?.indicatorLights === 3}
             />
             <IconButton
               onClick={() => {
-                fetchNui("vehmenu:toggleoption", {
+                handleButtonClick({
                   option: "right_blinker",
                 });
               }}
               Icon={ArrowRight}
-              disabled={!vehicleData?.isDriver}
+              disabled={!vehicleData?.isDriver || isButtonDisabled}
               isActive={[2, 3].includes(
                 vehicleData?.indicatorLights ? vehicleData?.indicatorLights : 0
               )}
             />
             <IconButton
               onClick={() => {
-                fetchNui("vehmenu:toggleoption", {
+                handleButtonClick({
                   option: "interior_light",
                 });
               }}
               Icon={Lightbulb}
-              disabled={!vehicleData?.isDriver}
+              disabled={!vehicleData?.isDriver || isButtonDisabled}
               isActive={
                 vehicleData?.interiorLight ? vehicleData.interiorLight : false
               }
