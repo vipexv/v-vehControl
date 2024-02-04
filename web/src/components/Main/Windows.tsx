@@ -28,7 +28,7 @@ const Windows: React.FC<Props> = React.memo(({ vehicleData }) => {
                   <IconButton
                     key={index}
                     Icon={MoveVertical}
-                    isActive={!windows.includes(index)}
+                    isActive={windows.includes(index)}
                     disabled={!vehicleData?.isDriver}
                     onClick={() => {
                       fetchNui("vehmenu:togglewindow", index);

@@ -6,5 +6,6 @@ export interface VehicleData {
   engineOn: boolean;
   indicatorLights: number;
   openDoors: number[],
-  closedWindows: number[]
+  closedWindows: number[],
+  interiorLight: boolean;
 }

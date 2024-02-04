@@ -67,7 +67,8 @@ SendCurrentVehicleDataToNui = function(updateData)
     engineOn = GetIsVehicleEngineRunning(currVeh),
     indicatorLights = GetVehicleIndicatorLights(currVeh),
     openDoors = openDoors,
-    closedWindows = closedWindows
+    closedWindows = closedWindows,
+    interiorLight = IsVehicleInteriorLightOn(currVeh)
   }
 
   UIMessage("nui:state:vehdata", vehData)

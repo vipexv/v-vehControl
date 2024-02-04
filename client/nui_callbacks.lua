@@ -58,13 +58,13 @@ RegisterNuiCallback("vehmenu:toggleoption", function(data, cb)
         delay = 1000
     end
 
-    if option == "rightblinker" then
+    if option == "right_blinker" then
         local lightsState = GetVehicleIndicatorLights(currVeh)
         local lightsStateBool = lightsState ~= 2 and lightsState ~= 3
         SetVehicleIndicatorLights(currVeh, 0, lightsStateBool)
     end
 
-    if option == "leftblinker" then
+    if option == "left_blinker" then
         local lightsState = GetVehicleIndicatorLights(currVeh)
         local lightsStateBool = lightsState ~= 1 and lightsState ~= 3
         SetVehicleIndicatorLights(currVeh, 1, lightsStateBool)
@@ -80,6 +80,11 @@ RegisterNuiCallback("vehmenu:toggleoption", function(data, cb)
             SetVehicleIndicatorLights(currVeh, 0, false)
             SetVehicleIndicatorLights(currVeh, 1, false)
         end
+    end
+
+    if option == "interior_light" then
+        local currState = IsVehicleInteriorLightOn(currVeh)
+        SetVehicleInteriorlight(currVeh, not currState)
     end
 
     if delay > 0 then

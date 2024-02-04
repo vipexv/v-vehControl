@@ -1,4 +1,10 @@
-import { AlertTriangle, ArrowLeft, ArrowRight, Power } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowLeft,
+  ArrowRight,
+  Lightbulb,
+  Power,
+} from "lucide-react";
 import React from "react";
 import { VehicleData } from "../../types/VehicleData";
 import { fetchNui } from "../../utils/fetchNui";
@@ -30,7 +36,7 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
             <IconButton
               onClick={() => {
                 fetchNui("vehmenu:toggleoption", {
-                  option: "leftblinker",
+                  option: "left_blinker",
                 });
               }}
               Icon={ArrowLeft}
@@ -52,7 +58,7 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
             <IconButton
               onClick={() => {
                 fetchNui("vehmenu:toggleoption", {
-                  option: "rightblinker",
+                  option: "right_blinker",
                 });
               }}
               Icon={ArrowRight}
@@ -60,6 +66,18 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
               isActive={[2, 3].includes(
                 vehicleData?.indicatorLights ? vehicleData?.indicatorLights : 0
               )}
+            />
+            <IconButton
+              onClick={() => {
+                fetchNui("vehmenu:toggleoption", {
+                  option: "interior_light",
+                });
+              }}
+              Icon={Lightbulb}
+              disabled={!vehicleData?.isDriver}
+              isActive={
+                vehicleData?.interiorLight ? vehicleData.interiorLight : false
+              }
             />
           </div>
         </div>
