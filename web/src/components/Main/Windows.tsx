@@ -1,5 +1,5 @@
 import { MoveVertical } from "lucide-react";
-import React from "react";
+import React, { useState } from "react";
 import { VehicleData } from "../../types/VehicleData";
 import { fetchNui } from "../../utils/fetchNui";
 import IconButton from "./IconButton";
@@ -12,6 +12,19 @@ const Windows: React.FC<Props> = React.memo(({ vehicleData }) => {
   const windows = !vehicleData?.closedWindows
     ? [0, 1]
     : vehicleData.closedWindows;
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const handleButtonClick = (index: number) => {
+    if (!isButtonDisabled) {
+      setIsButtonDisabled(true);
+      fetchNui("vehmenu:togglewindow", index);
+      setTimeout(() => {
+        setIsButtonDisabled(false);
+      }, 200);
+    }
+  };
+
   return (
     <>
       <div className="bg-gradient-to-r from-[#222530] to-[#1d212b] h-fit  px-4 py-1 rounded-[2px]">
@@ -29,9 +42,9 @@ const Windows: React.FC<Props> = React.memo(({ vehicleData }) => {
                     key={index}
                     Icon={MoveVertical}
                     isActive={windows.includes(index)}
-                    disabled={!vehicleData?.isDriver}
+                    disabled={!vehicleData?.isDriver || isButtonDisabled}
                     onClick={() => {
-                      fetchNui("vehmenu:togglewindow", index);
+                      handleButtonClick(index);
                     }}
                   />
                 </>
