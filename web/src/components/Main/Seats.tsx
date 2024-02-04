@@ -12,14 +12,16 @@ interface Props {
 const Seats: React.FC<Props> = React.memo(({ vehicleData }) => {
   const currentSeat = !vehicleData?.currSeat ? 1 : vehicleData.currSeat + 1;
 
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [disabledButton, setDisabledButton] = useState<number | undefined>(
+    undefined
+  );
 
   const handleButtonClick = (index: number) => {
-    if (!isButtonDisabled) {
-      setIsButtonDisabled(true);
+    if (!disabledButton) {
+      setDisabledButton(index);
       fetchNui("vehmenu:setseat", index);
       setTimeout(() => {
-        setIsButtonDisabled(false);
+        setDisabledButton(undefined);
       }, 500);
     }
   };
@@ -42,9 +44,10 @@ const Seats: React.FC<Props> = React.memo(({ vehicleData }) => {
                     onClick={() => {
                       handleButtonClick(index);
                     }}
-                    disabled={isButtonDisabled}
+                    disabled={disabledButton === index}
                     isActive={currentSeat === index}
                     svg={index === 0 ? carWheelIcon : carSeatIcon}
+                    loading={disabledButton === index}
                   />
                 </>
               );

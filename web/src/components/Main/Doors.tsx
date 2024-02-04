@@ -13,14 +13,16 @@ interface Props {
 const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
   const openDoors = !vehicleData?.openDoors ? [0, 1] : vehicleData.openDoors;
 
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [disabledButton, setDisabledButton] = useState<number | undefined>(
+    undefined
+  );
 
   const handleButtonClick = (index: number) => {
-    if (!isButtonDisabled) {
-      setIsButtonDisabled(true);
+    if (!disabledButton) {
+      setDisabledButton(index);
       fetchNui("vehmenu:toggledoor", index);
       setTimeout(() => {
-        setIsButtonDisabled(false);
+        setDisabledButton(undefined);
       }, 500);
     }
   };
@@ -37,8 +39,9 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
               onClick={() => {
                 handleButtonClick(4);
               }}
-              disabled={!vehicleData?.isDriver || isButtonDisabled}
+              disabled={!vehicleData?.isDriver || disabledButton === 4}
               isActive={openDoors.includes(4)}
+              loading={disabledButton === 4}
               svg={hoodIcon}
             />
             <div className="grid grid-cols-2 gap-2">
@@ -52,8 +55,11 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
                       onClick={() => {
                         handleButtonClick(index);
                       }}
-                      disabled={!vehicleData?.isDriver || isButtonDisabled}
+                      disabled={
+                        !vehicleData?.isDriver || disabledButton === index
+                      }
                       isActive={openDoors.includes(index)}
+                      loading={disabledButton === index}
                       svg={doorIcon}
                     />
                   </>
@@ -64,8 +70,9 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData }) => {
               onClick={() => {
                 handleButtonClick(5);
               }}
-              disabled={!vehicleData?.isDriver || isButtonDisabled}
+              disabled={!vehicleData?.isDriver || disabledButton === 5}
               isActive={openDoors.includes(5)}
+              loading={disabledButton === 5}
               svg={trunkIcon}
             />
           </div>

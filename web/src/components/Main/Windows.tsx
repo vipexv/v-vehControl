@@ -9,18 +9,20 @@ interface Props {
 }
 
 const Windows: React.FC<Props> = React.memo(({ vehicleData }) => {
-  const windows = !vehicleData?.closedWindows
+  const closedWindows = !vehicleData?.closedWindows
     ? [0, 1]
     : vehicleData.closedWindows;
 
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [disabledButton, setDisabledButton] = useState<number | undefined>(
+    undefined
+  );
 
   const handleButtonClick = (index: number) => {
-    if (!isButtonDisabled) {
-      setIsButtonDisabled(true);
+    if (!disabledButton) {
+      setDisabledButton(index);
       fetchNui("vehmenu:togglewindow", index);
       setTimeout(() => {
-        setIsButtonDisabled(false);
+        setDisabledButton(undefined);
       }, 200);
     }
   };
@@ -41,8 +43,11 @@ const Windows: React.FC<Props> = React.memo(({ vehicleData }) => {
                   <IconButton
                     key={index}
                     Icon={MoveVertical}
-                    isActive={windows.includes(index)}
-                    disabled={!vehicleData?.isDriver || isButtonDisabled}
+                    isActive={closedWindows.includes(index)}
+                    disabled={
+                      !vehicleData?.isDriver || disabledButton === index
+                    }
+                    loading={disabledButton === index}
                     onClick={() => {
                       handleButtonClick(index);
                     }}

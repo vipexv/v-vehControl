@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { clsx } from "clsx";
+import { RefreshCw } from "lucide-react";
 import React from "react";
 
 interface props {
@@ -11,6 +12,7 @@ interface props {
   onClick?: () => void;
   disabled?: boolean;
   svg?: any;
+  loading?: boolean;
 }
 
 const IconButton: React.FC<props> = React.memo(
@@ -23,6 +25,7 @@ const IconButton: React.FC<props> = React.memo(
     onClick,
     disabled,
     svg,
+    loading,
   }) => {
     return (
       <>
@@ -43,7 +46,15 @@ const IconButton: React.FC<props> = React.memo(
                 : "rgb(225 29 72 / 1)",
             }}
           ></div>
-          {!svg ? (
+          {loading ? (
+            <>
+              <RefreshCw
+                className="relative bottom-[3px] animate-spin"
+                size={!size ? 18 : size}
+                strokeWidth={!strokeWidth ? 3 : strokeWidth}
+              />
+            </>
+          ) : !svg ? (
             <>
               <Icon
                 className="relative bottom-[3px]"

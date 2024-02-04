@@ -15,14 +15,16 @@ interface Props {
 }
 
 const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [disabledButton, setDisabledButton] = useState<string | undefined>(
+    undefined
+  );
 
-  const handleButtonClick = (option: object) => {
-    if (!isButtonDisabled) {
-      setIsButtonDisabled(true);
-      fetchNui("vehmenu:toggleoption", option);
+  const handleButtonClick = (data: { option: string }) => {
+    if (!disabledButton) {
+      setDisabledButton(data.option);
+      fetchNui("vehmenu:toggleoption", data);
       setTimeout(() => {
-        setIsButtonDisabled(false);
+        setDisabledButton(undefined);
       }, 500);
     }
   };
@@ -41,8 +43,9 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
                   option: "engine",
                 });
               }}
+              loading={disabledButton === "engine"}
               Icon={Power}
-              disabled={!vehicleData?.isDriver || isButtonDisabled}
+              disabled={!vehicleData?.isDriver || disabledButton === "engine"}
               isActive={!!vehicleData?.engineOn}
             />
             <IconButton
@@ -51,8 +54,11 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
                   option: "left_blinker",
                 });
               }}
+              loading={disabledButton === "left_blinker"}
               Icon={ArrowLeft}
-              disabled={!vehicleData?.isDriver || isButtonDisabled}
+              disabled={
+                !vehicleData?.isDriver || disabledButton === "left_blinker"
+              }
               isActive={[1, 3].includes(
                 vehicleData?.indicatorLights ? vehicleData?.indicatorLights : 0
               )}
@@ -63,8 +69,9 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
                   option: "alert",
                 });
               }}
+              loading={disabledButton === "alert"}
               Icon={AlertTriangle}
-              disabled={!vehicleData?.isDriver || isButtonDisabled}
+              disabled={!vehicleData?.isDriver || disabledButton === "alert"}
               isActive={vehicleData?.indicatorLights === 3}
             />
             <IconButton
@@ -73,8 +80,11 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
                   option: "right_blinker",
                 });
               }}
+              loading={disabledButton === "right_blinker"}
               Icon={ArrowRight}
-              disabled={!vehicleData?.isDriver || isButtonDisabled}
+              disabled={
+                !vehicleData?.isDriver || disabledButton === "right_blinker"
+              }
               isActive={[2, 3].includes(
                 vehicleData?.indicatorLights ? vehicleData?.indicatorLights : 0
               )}
@@ -85,8 +95,11 @@ const MiscellaneousActions: React.FC<Props> = React.memo(({ vehicleData }) => {
                   option: "interior_light",
                 });
               }}
+              loading={disabledButton === "interior_light"}
               Icon={Lightbulb}
-              disabled={!vehicleData?.isDriver || isButtonDisabled}
+              disabled={
+                !vehicleData?.isDriver || disabledButton === "interior_light"
+              }
               isActive={
                 vehicleData?.interiorLight ? vehicleData.interiorLight : false
               }
