@@ -8,7 +8,7 @@ interface props {
   className?: string;
   size?: number;
   strokeWidth?: number;
-  onClick?: () => void; // Step 1: Add onSubmit prop to Props interface
+  onClick?: () => void;
   disabled?: boolean;
   svg?: any;
 }

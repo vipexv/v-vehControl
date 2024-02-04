@@ -1,3 +1,9 @@
-<svg fill="#ffffff" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve"
-  transform="rotate(0)matrix(1, 0, 0, 1, 0, 0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M506.583,9.847C501.727,3.635,494.286,0,486.402,0h-256c-6.793,0-13.303,2.697-18.099,7.501l-204.8,204.8 c-4.804,4.796-7.501,11.307-7.501,18.099v256c0,14.14,11.46,25.6,25.6,25.6h409.6c14.14,0,25.6-11.46,25.6-25.6V233.549 l50.432-201.745C513.145,24.158,511.43,16.06,506.583,9.847z M435.202,486.4h-409.6V256h409.6V486.4z M435.202,230.4h-409.6 l204.8-204.8h256L435.202,230.4z"></path> </g> </g> <g> <g> <rect x="332.802" y="281.6" width="76.8" height="25.6"></rect> </g> </g> </g></svg>
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" fill="#ffffff" stroke="#ffffff"
+  stroke-width="0.00512" transform="rotate(0)matrix(-1, 0, 0, 1, 0, 0)">
+  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+  <g id="SVGRepo_iconCarrier">
+    <path fill="#ffffff"
+      d="M149.6 41L42.88 254.4c23.8 24.3 53.54 58.8 78.42 97.4 24.5 38.1 44.1 79.7 47.1 119.2h270.3L423.3 41H149.6zM164 64h230l8 192H74l90-192zm86.8 17.99l-141 154.81L339.3 81.99h-88.5zM336 279h64v18h-64v-18z"></path>
+  </g>
+</svg>
