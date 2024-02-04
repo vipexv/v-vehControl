@@ -7,4 +7,7 @@ RegisterNetEvent("VehControl:UIMessage", function(action, data)
         GetInvokingResource())
 end)
 
-RegisterNetEvent("vehmenu:toggle", SendCurrentVehicleDataToNui)
+RegisterNetEvent("vehiclecontrol:toggle", function()
+    Debug("[vehiclecontrol:toggle] Called.")
+    SendCurrentVehicleDataToNui()
+end)
