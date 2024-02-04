@@ -76,7 +76,7 @@ const Core: React.FC = () => {
     <Transition
       mounted={visible}
       duration={400}
-      transition={"slide-up"}
+      transition={"pop"}
       timingFunction="ease"
     >
       {(styles) => (
