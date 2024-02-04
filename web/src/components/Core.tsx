@@ -87,8 +87,8 @@ const Core: React.FC = () => {
           >
             <div
               className={clsx(
-                "flex flex-col gap-2 mb-10 justify-center items-center",
-                focusMode && "opacity-25"
+                "flex flex-col gap-2 mb-10 justify-center items-center transition-all",
+                focusMode && "-mb-[60dvh]"
               )}
             >
               <div className="flex items-end gap-4 text-white">
