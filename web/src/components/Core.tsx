@@ -74,7 +74,7 @@ const Core: React.FC = () => {
 
   return (
     <Transition
-      mounted={visible}
+      mounted={visible && !focusMode}
       duration={400}
       transition={"pop"}
       timingFunction="ease"
@@ -87,8 +87,7 @@ const Core: React.FC = () => {
           >
             <div
               className={clsx(
-                "flex flex-col gap-2 mb-10 justify-center items-center transition-all",
-                focusMode && "-mb-[60dvh]"
+                "flex flex-col gap-2 mb-10 justify-center items-center transition-all"
               )}
             >
               <div className="flex items-end gap-4 text-white">
