@@ -37,8 +37,10 @@ const Core: React.FC = () => {
 
     const keyHandler = (e: KeyboardEvent) => {
       if (["Escape"].includes(e.code)) {
-        if (!isEnvBrowser()) fetchNui("hideFrame");
-        else setVisible(!visible);
+        if (!isEnvBrowser()) {
+          fetchNui("hideFrame");
+          setFocusMode(false);
+        } else setVisible(!visible);
       }
     };
 
