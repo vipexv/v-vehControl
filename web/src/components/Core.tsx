@@ -11,6 +11,7 @@ import Doors from "./Main/Doors";
 import MiscellaneousActions from "./Main/MiscellaneousActions";
 import Seats from "./Main/Seats";
 import Windows from "./Main/Windows";
+import { Info } from "lucide-react";
 
 debugData([
   {
@@ -48,6 +49,7 @@ const Core: React.FC = () => {
 
     const handleMouseDown = (e: MouseEvent) => {
       if (e.button === 2) {
+        e.preventDefault();
         fetchNui("vehmenu:togglefocus", false);
         setFocusMode(true);
       }
@@ -55,6 +57,7 @@ const Core: React.FC = () => {
 
     const handleMouseUp = (e: MouseEvent) => {
       if (e.button === 2) {
+        e.preventDefault();
         fetchNui("vehmenu:togglefocus", true);
         setFocusMode(false);
       }
@@ -91,8 +94,25 @@ const Core: React.FC = () => {
               )}
             >
               <div className="flex items-end gap-4 text-white">
-                <Windows vehicleData={vehicleData} />
-                <Seats vehicleData={vehicleData} />
+                <div className="flex flex-col justify-end gap-1">
+                  {/* <div className="bg-gradient-to-r font-main from-[#222530] to-[#1d212b] h-fit  px-4 py-1 rounded-[2px]">
+
+                  </div> */}
+                  {vehicleData?.seats && vehicleData.seats <= 4 && (
+                    <>
+                      <p className="font-main flex items-center bg-gradient-to-r p-2 rounded-[2px] from-[#2f323d] via-[#3d3f49] to-[#292c37] text-[#2fffd2] font-bold text-sm">
+                        <Info size={20} strokeWidth={2.25} className="mr-2" />{" "}
+                        <span className="mt-1">
+                          Tip: Right click to enter focus mode.
+                        </span>
+                      </p>
+                    </>
+                  )}
+                  <div className="flex items-end gap-4">
+                    <Windows vehicleData={vehicleData} />
+                    <Seats vehicleData={vehicleData} />
+                  </div>
+                </div>
                 <Doors vehicleData={vehicleData} />
               </div>
               <MiscellaneousActions vehicleData={vehicleData} />

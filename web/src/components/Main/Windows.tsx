@@ -29,7 +29,7 @@ const Windows: React.FC<Props> = React.memo(({ vehicleData }) => {
 
   return (
     <>
-      <div className="bg-gradient-to-r from-[#222530] to-[#1d212b] h-fit  px-4 py-1 rounded-[2px]">
+      <div className="bg-gradient-to-r from-[#222530] to-[#1d212b] h-fit px-4 py-1 rounded-[2px]">
         <div className="flex flex-col gap-2 justify-center items-center font-main">
           <p className="bg-gradient-to-r px-6 py-1  mt-1 rounded-[2px] from-[#2f323d] via-[#3d3f49] to-[#292c37] text-[#2fffd2] font-bold">
             Windows
