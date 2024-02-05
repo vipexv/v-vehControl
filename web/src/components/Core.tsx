@@ -46,7 +46,7 @@ const Core: React.FC = () => {
           "Escape",
           `Key${
             resourceConfig?.Keybind?.enabled
-              ? resourceConfig.Keybind.key
+              ? resourceConfig.Keybind.key.toUpperCase()
               : "nil"
           }`,
         ].includes(e.code)
