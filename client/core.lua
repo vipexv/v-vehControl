@@ -75,6 +75,8 @@ SendCurrentVehicleDataToNui = function(updateData)
 
   if updateData then return end
 
+  UIMessage("nui:state:config", Config)
+
   ToggleNuiFrame(true)
 end
 
