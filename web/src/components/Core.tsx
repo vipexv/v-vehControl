@@ -12,6 +12,7 @@ import MiscellaneousActions from "./Main/MiscellaneousActions";
 import Seats from "./Main/Seats";
 import Windows from "./Main/Windows";
 import { Info } from "lucide-react";
+import { ResourceConfig } from "../types/ResourceConfig";
 
 debugData([
   {
@@ -27,8 +28,12 @@ const Core: React.FC = () => {
   );
 
   const [focusMode, setFocusMode] = useState(false);
+  const [resourceConfig, setResourceConfig] = useState<
+    ResourceConfig | undefined
+  >(undefined);
 
   useNuiEvent("nui:state:vehdata", setVehicleData);
+  useNuiEvent("nui:state:config", setResourceConfig);
 
   useNuiEvent<boolean>("setVisible", setVisible);
 
@@ -36,7 +41,16 @@ const Core: React.FC = () => {
     if (!visible) return;
 
     const keyHandler = (e: KeyboardEvent) => {
-      if (["Escape"].includes(e.code)) {
+      if (
+        [
+          "Escape",
+          `Key${
+            resourceConfig?.Keybind?.enabled
+              ? resourceConfig.Keybind.key
+              : "nil"
+          }`,
+        ].includes(e.code)
+      ) {
         if (!isEnvBrowser()) {
           fetchNui("hideFrame");
           setFocusMode(false);
