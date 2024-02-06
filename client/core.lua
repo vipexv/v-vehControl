@@ -13,13 +13,19 @@ SendCurrentVehicleDataToNui = function(updateData)
 
   -- Add a +1 for the driver as well.
   local vehDoors = GetVehicleMaxNumberOfPassengers(currVeh) + 1
+
   -- Remove 2, it counts the hood/trunk if any.
   local vehDoorsAlternative = GetNumberOfVehicleDoors(currVeh) - 2
+
   local vehSeats = GetVehicleModelNumberOfSeats(vehModel)
   local pedInDriverSeat = GetPedInVehicleSeat(currVeh, -1)
   local isDriver = pedInDriverSeat == sourcePed
   local currSeat = nil
+
+  -- With cars more than 4 passengers, it counts all of the extra seats as doors, for example the bus itself, which is why we are switching to the GetNumberOfVehicleDoors native.
+
   local doors = vehDoors > 4 and vehDoorsAlternative or vehDoors
+
   local openDoors = {}
   local closedWindows = {}
 
@@ -33,7 +39,7 @@ SendCurrentVehicleDataToNui = function(updateData)
   end
 
 
-  -- Open Doors and Windows
+  --  State's for doors and windows.
   for i = 0, doors - 1 do
     local isVehicleDoorOpen = GetVehicleDoorAngleRatio(currVeh, i) > 0.0
     local isWindowOpen = IsVehicleWindowIntact(currVeh, i)
