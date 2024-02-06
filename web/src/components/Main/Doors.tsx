@@ -58,7 +58,9 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData, resourceConfig }) => {
                         handleButtonClick(index);
                       }}
                       disabled={
-                        vehicleData?.currSeat !== -1 || disabledButton === index
+                        (vehicleData?.currSeat !== -1 &&
+                          vehicleData?.currSeat !== index - 1) ||
+                        disabledButton === index
                       }
                       isActive={openDoors.includes(index)}
                       loading={disabledButton === index}
