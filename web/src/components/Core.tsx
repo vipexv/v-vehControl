@@ -58,11 +58,6 @@ const Core: React.FC = () => {
       }
     };
 
-    // const handleContextMenu = (e: MouseEvent) => {
-    //   e.preventDefault(); // Prevent default right-click behavior
-    //   console.log("Entered right click mode");
-    // };
-
     const handleMouseDown = (e: MouseEvent) => {
       if (e.button === 2) {
         e.preventDefault();
@@ -119,19 +114,31 @@ const Core: React.FC = () => {
                       <p className="font-main flex items-center bg-gradient-to-r p-2 rounded-[2px] from-[#2f323d] via-[#3d3f49] to-[#292c37] text-[#2fffd2] font-bold text-sm">
                         <Info size={20} strokeWidth={2.25} className="mr-2" />{" "}
                         <span className="mt-1">
-                          Tip: Right click to enter focus mode.
+                          {resourceConfig?.Translation?.tip_focus_mode}
                         </span>
                       </p>
                     </>
                   )}
                   <div className="flex items-end gap-4">
-                    <Windows vehicleData={vehicleData} />
-                    <Seats vehicleData={vehicleData} />
+                    <Windows
+                      vehicleData={vehicleData}
+                      resourceConfig={resourceConfig}
+                    />
+                    <Seats
+                      vehicleData={vehicleData}
+                      resourceConfig={resourceConfig}
+                    />
                   </div>
                 </div>
-                <Doors vehicleData={vehicleData} />
+                <Doors
+                  vehicleData={vehicleData}
+                  resourceConfig={resourceConfig}
+                />
               </div>
-              <MiscellaneousActions vehicleData={vehicleData} />
+              <MiscellaneousActions
+                vehicleData={vehicleData}
+                resourceConfig={resourceConfig}
+              />
             </div>
           </div>
         </>
