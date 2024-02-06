@@ -23,8 +23,6 @@ SendCurrentVehicleDataToNui = function(updateData)
   local vehDoorsAlternative = GetNumberOfVehicleDoors(currVeh) - 2
 
   local vehSeats = GetVehicleModelNumberOfSeats(vehModel)
-  local pedInDriverSeat = GetPedInVehicleSeat(currVeh, -1)
-  local isDriver = pedInDriverSeat == sourcePed
   local currSeat = nil
 
   -- With cars more than 4 passengers, it counts all of the extra seats as doors, for example the bus itself, which is why we are switching to the GetNumberOfVehicleDoors native.
@@ -73,7 +71,6 @@ SendCurrentVehicleDataToNui = function(updateData)
   local vehData = {
     doors = doors,
     seats = vehSeats,
-    isDriver = isDriver,
     currSeat = currSeat,
     engineOn = GetIsVehicleEngineRunning(currVeh),
     indicatorLights = GetVehicleIndicatorLights(currVeh),

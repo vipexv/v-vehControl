@@ -48,7 +48,9 @@ const MiscellaneousActions: React.FC<Props> = React.memo(
                 }}
                 loading={disabledButton === "engine"}
                 Icon={Power}
-                disabled={!vehicleData?.isDriver || disabledButton === "engine"}
+                disabled={
+                  vehicleData?.currSeat !== -1 || disabledButton === "engine"
+                }
                 isActive={!!vehicleData?.engineOn}
               />
               <IconButton
@@ -60,7 +62,8 @@ const MiscellaneousActions: React.FC<Props> = React.memo(
                 loading={disabledButton === "left_blinker"}
                 Icon={ArrowLeft}
                 disabled={
-                  !vehicleData?.isDriver || disabledButton === "left_blinker"
+                  vehicleData?.currSeat !== -1 ||
+                  disabledButton === "left_blinker"
                 }
                 isActive={[1, 3].includes(
                   vehicleData?.indicatorLights
@@ -76,7 +79,9 @@ const MiscellaneousActions: React.FC<Props> = React.memo(
                 }}
                 loading={disabledButton === "alert"}
                 Icon={AlertTriangle}
-                disabled={!vehicleData?.isDriver || disabledButton === "alert"}
+                disabled={
+                  vehicleData?.currSeat !== -1 || disabledButton === "alert"
+                }
                 isActive={vehicleData?.indicatorLights === 3}
               />
               <IconButton
@@ -88,7 +93,8 @@ const MiscellaneousActions: React.FC<Props> = React.memo(
                 loading={disabledButton === "right_blinker"}
                 Icon={ArrowRight}
                 disabled={
-                  !vehicleData?.isDriver || disabledButton === "right_blinker"
+                  vehicleData?.currSeat !== -1 ||
+                  disabledButton === "right_blinker"
                 }
                 isActive={[2, 3].includes(
                   vehicleData?.indicatorLights
@@ -105,7 +111,8 @@ const MiscellaneousActions: React.FC<Props> = React.memo(
                 loading={disabledButton === "interior_light"}
                 Icon={Lightbulb}
                 disabled={
-                  !vehicleData?.isDriver || disabledButton === "interior_light"
+                  vehicleData?.currSeat !== -1 ||
+                  disabledButton === "interior_light"
                 }
                 isActive={
                   vehicleData?.interiorLight ? vehicleData.interiorLight : false

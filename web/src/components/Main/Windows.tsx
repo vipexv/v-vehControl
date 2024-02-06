@@ -48,7 +48,7 @@ const Windows: React.FC<Props> = React.memo(
                       Icon={MoveVertical}
                       isActive={closedWindows.includes(index)}
                       disabled={
-                        !vehicleData?.isDriver || disabledButton === index
+                        vehicleData?.currSeat !== -1 || disabledButton === index
                       }
                       loading={disabledButton === index}
                       onClick={() => {

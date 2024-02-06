@@ -41,7 +41,7 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData, resourceConfig }) => {
               onClick={() => {
                 handleButtonClick(4);
               }}
-              disabled={!vehicleData?.isDriver || disabledButton === 4}
+              disabled={vehicleData?.currSeat !== -1 || disabledButton === 4}
               isActive={openDoors.includes(4)}
               loading={disabledButton === 4}
               svg={hoodIcon}
@@ -58,7 +58,7 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData, resourceConfig }) => {
                         handleButtonClick(index);
                       }}
                       disabled={
-                        !vehicleData?.isDriver || disabledButton === index
+                        vehicleData?.currSeat !== -1 || disabledButton === index
                       }
                       isActive={openDoors.includes(index)}
                       loading={disabledButton === index}
@@ -72,7 +72,7 @@ const Doors: React.FC<Props> = React.memo(({ vehicleData, resourceConfig }) => {
               onClick={() => {
                 handleButtonClick(5);
               }}
-              disabled={!vehicleData?.isDriver || disabledButton === 5}
+              disabled={vehicleData?.currSeat !== -1 || disabledButton === 5}
               isActive={openDoors.includes(5)}
               loading={disabledButton === 5}
               svg={trunkIcon}
