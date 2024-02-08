@@ -25,7 +25,7 @@ SendCurrentVehicleDataToNui = function(updateData)
   local vehSeats = GetVehicleModelNumberOfSeats(vehModel)
   local currSeat = nil
 
-  -- With cars more than 4 passengers, it counts all of the extra seats as doors, for example the bus itself, which is why we are switching to the GetNumberOfVehicleDoors native.
+  -- With cars more than 4 passengers, it counts all of the extra seats as doors, which is why we are switching to the GetNumberOfVehicleDoors native.
 
   local doors = vehDoors > 4 and vehDoorsAlternative or vehDoors
 
