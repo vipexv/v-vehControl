@@ -1,18 +1,17 @@
 import { Transition } from "@mantine/core";
 import clsx from "clsx";
-import React, { useEffect, useState } from "react";
-import { useNuiEvent } from "../hooks/useNuiEvent";
-import { VehicleData } from "../types/VehicleData";
-import { debugData } from "../utils/debugData";
-import { fetchNui } from "../utils/fetchNui";
-import { isEnvBrowser } from "../utils/misc";
-import "./Core.css";
-import Doors from "./Main/Doors";
-import MiscellaneousActions from "./Main/MiscellaneousActions";
-import Seats from "./Main/Seats";
-import Windows from "./Main/Windows";
 import { Info } from "lucide-react";
-import { ResourceConfig } from "../types/ResourceConfig";
+import React, { useEffect, useState } from "react";
+import Doors from "./components/Main/Doors";
+import MiscellaneousActions from "./components/Main/MiscellaneousActions";
+import Seats from "./components/Main/Seats";
+import Windows from "./components/Main/Windows";
+import { useNuiEvent } from "./hooks/useNuiEvent";
+import { ResourceConfig } from "./types/ResourceConfig";
+import { VehicleData } from "./types/VehicleData";
+import { debugData } from "./utils/debugData";
+import { fetchNui } from "./utils/fetchNui";
+import { isEnvBrowser } from "./utils/misc";
 
 debugData([
   {
@@ -21,7 +20,7 @@ debugData([
   },
 ]);
 
-const Core: React.FC = () => {
+const App: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const [vehicleData, setVehicleData] = useState<VehicleData | undefined>(
     undefined
@@ -147,4 +146,4 @@ const Core: React.FC = () => {
   );
 };
 
-export default Core;
+export default App;

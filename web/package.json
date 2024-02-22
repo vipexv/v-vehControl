@@ -5,10 +5,11 @@
   "type": "module",
   "version": "0.1.0",
   "scripts": {
-    "start": "vite",
-    "start:game": "vite build --watch",
+    "dev": "vite",
+    "watch": "vite build --watch",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@mantine/core": "^7.5.1",

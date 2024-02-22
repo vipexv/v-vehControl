@@ -5,32 +5,31 @@ lua54 'yes'
 use_experimental_fxv2_oal "yes"
 
 author 'vipex'
+repository "HERE"
+
+shared_script "require.lua"
+
 ui_page 'web/dist/index.html'
+
+files {
+	"modules/**/client.lua",
+	"modules/**/shared.lua",
+	'web/dist/index.html',
+	'web/dist/**/*',
+}
 
 shared_scripts {
 	"config.lua",
 	"shared/main.lua",
-	"shared/types.lua",
-	"dev_testing/shared/**/*" -- Only use for development purpose.
+	-- "dev/shared/**/*" -- Only use for Development purpose.
 }
 
 client_scripts {
-	'client/cl_utils.lua',
-	'client/classes/**/*',
-	'client/modules/**/*',
-	'client/core.lua',
-	'client/events.lua',
-	'client/nui_callbacks.lua',
-	'client/commands.lua',
-	'dev_testing/client/**/*' -- Only use for development purpose.
+	'client/main.lua',
+	"dev/client/**/*" -- Only use for Development purpose.
 }
 
 server_scripts {
-	"server/core.lua",
-	"dev_testing/server/**/*" -- Only use for development purpose.
-}
-
-files {
-	'web/dist/index.html',
-	'web/dist/**/*',
+	"server/main.lua",
+	-- "dev/server/**/*" -- Only use for Development purpose.
 }
