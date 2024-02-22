@@ -26,7 +26,7 @@ shared_scripts {
 
 client_scripts {
 	'client/main.lua',
-	"dev/client/**/*" -- Only use for Development purpose.
+	--"dev/client/**/*" -- Only use for Development purpose.
 }
 
 server_scripts {
