@@ -5,7 +5,7 @@ lua54 'yes'
 use_experimental_fxv2_oal "yes"
 
 author 'vipex'
-repository "HERE"
+repository "https://github.com/vipexv/v-vehControl"
 
 shared_script "require.lua"
 
