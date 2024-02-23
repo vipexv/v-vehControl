@@ -1,8 +1,8 @@
 -- Copy and pasta for VersionChecker func from ox_lib Credit: "https://github.com/overextended/ox_lib"
-VersionCheck = function(repository)
+local VersionCheck = function(repository)
     local resource = GetInvokingResource() or GetCurrentResourceName()
 
-    local currentVersion = 'v1.0.6'
+    local currentVersion = 'v1.0.7'
 
     if currentVersion then
         currentVersion = currentVersion:match('%d+%.%d+%.%d+')

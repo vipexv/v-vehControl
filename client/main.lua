@@ -1,5 +1,7 @@
 --#region Variables
 local interface = require "modules.interface.client"
+local utils = require "modules.utils.shared"
+local Debug = utils.Debug
 
 Script = {
     State = {

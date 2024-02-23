@@ -2,7 +2,7 @@
 
 ---@diagnostic disable: lowercase-global
 local loaded = {}
-lib = {}
+Class = {}
 
 package = {
     loaded = setmetatable({}, {
@@ -21,7 +21,7 @@ local _require = require
 ---@param filePath string
 ---@param env? table
 ---@return any
-function lib.load(filePath, env)
+function Class.load(filePath, env)
     local modpath = filePath:gsub('%.', '/')
     local resourceSrc = cache.resource
 
@@ -43,7 +43,7 @@ function lib.load(filePath, env)
     error(('cannot load file at path %s'):format(modpath))
 end
 
-function lib.loadJson(filePath)
+function Class.loadJson(filePath)
     local modpath = filePath:gsub('%.', '/')
     local resourceSrc = cache.resource
     local scriptPath = ('%s.json'):format(modpath)
@@ -56,7 +56,7 @@ function lib.loadJson(filePath)
     error(('cannot load json file at path %s'):format(modpath))
 end
 
-function lib.require(modname)
+function Class.require(modname)
     if type(modname) ~= 'string' then return end
 
     local modpath = modname:gsub('%.', '/')
@@ -115,4 +115,4 @@ function lib.require(modname)
     return module
 end
 
-require = lib.require
+require = Class.require
