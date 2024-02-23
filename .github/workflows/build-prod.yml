@@ -61,12 +61,12 @@ jobs:
       - name: Bundle files
         run: |
           ls
-          mkdir -p ./temp/v-staffchat
-          mkdir -p ./temp/v-staffchat/web/
-          cp ./{LICENSE,README.md,fxmanifest.lua,config.lua,sv_config.lua} ./temp/v-staffchat
-          cp -r ./{client,locales,server,shared} ./temp/v-staffchat
-          cp -r ./web/dist ./temp/v-staffchat/web/
-          cd ./temp && zip -r ../v-staffchat.zip ./v-staffchat
+          mkdir -p ./temp/v-vehControl
+          mkdir -p ./temp/v-vehControl/web/
+          cp ./{LICENSE,README.md,fxmanifest.lua,config.lua,require.lua,types.lua} ./temp/v-vehControl
+          cp -r ./{client,server,modules,dev} ./temp/v-vehControl
+          cp -r ./web/dist ./temp/v-vehControl/web/
+          cd ./temp && zip -r ../v-vehControl.zip ./v-vehControl
 
       - name: Create Release
         uses: "marvinpinto/action-automatic-releases@v1.2.1"
@@ -75,7 +75,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           title: ${{ env.RELEASE_VERSION }}
           prerelease: false
-          files: v-staffchat.zip
+          files: v-vehControl.zip
 
         env:
           CI: false
