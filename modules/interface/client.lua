@@ -11,7 +11,7 @@ nui.message = function(action, data)
 end
 
 ---@param shouldShow boolean
-nui.toggleNuiFrame = function(shouldShow)
+nui.toggle = function(shouldShow)
     SetNuiFocus(shouldShow, shouldShow)
     nui.message("setVisible", shouldShow)
 end

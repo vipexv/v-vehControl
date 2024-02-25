@@ -96,7 +96,7 @@ SendCurrentVehicleDataToNui = function(updateData)
 
     if updateData then return end
 
-    interface.toggleNuiFrame(true)
+    interface.toggle(true)
 end
 
 --#endregion Functions
@@ -120,7 +120,7 @@ end)
 --#region Callbacks
 RegisterNuiCallback('hideFrame', function(_, cb)
     cb(1)
-    interface.toggleNuiFrame(false)
+    interface.toggle(false)
     Debug('[nuicb:hideFrame] called')
 end)
 
