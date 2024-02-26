@@ -50,7 +50,7 @@ const IconButton: React.FC<props> = React.memo(
             <>
               <RefreshCw
                 className="relative bottom-[3px] animate-spin"
-                size={!size ? 18 : size}
+                size={!size ? 20 : size}
                 strokeWidth={!strokeWidth ? 3 : strokeWidth}
               />
             </>

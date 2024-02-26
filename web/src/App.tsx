@@ -20,6 +20,15 @@ debugData([
   },
 ]);
 
+debugData([
+  {
+    action: "nui:state:vehdata",
+    data: {
+      currSeat: -1,
+    },
+  },
+]);
+
 const App: React.FC = () => {
   const [visible, setVisible] = useState(false);
   const [vehicleData, setVehicleData] = useState<VehicleData | undefined>(
