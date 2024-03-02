@@ -17,7 +17,7 @@ SendCurrentVehicleDataToNui = function(updateData)
 
     if not IsPedInAnyVehicle(sourcePed, false) then return Debug("Ped isn't in any vehicle.") end
 
-    -- Flag:CPED_CONFIG_FLAG_PreventAutoShuffleToDriversSeat
+    -- Flag 184 = CPED_CONFIG_FLAG_PreventAutoShuffleToDriversSeat
     SetPedConfigFlag(sourcePed, 184, true)
 
     local currVeh = GetVehiclePedIsIn(sourcePed, false)
