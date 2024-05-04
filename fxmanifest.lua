@@ -2,7 +2,7 @@ fx_version "cerulean"
 game "gta5"
 
 author "vipex"
-version "1.0.7"
+version "1.0.8"
 repository "https://github.com/vipexv/v-vehControl"
 
 shared_scripts {
@@ -12,7 +12,7 @@ shared_scripts {
 
 client_scripts {
 	"client/main.lua",
-	-- "dev/client/commands.lua", -- Uncheck for development commands.
+	--"dev/client/commands.lua", -- Uncheck for development commands.
 }
 
 server_scripts {
