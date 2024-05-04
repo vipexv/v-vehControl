@@ -13,3 +13,9 @@ Config = {
         ["tab_doors"] = "Doors",
     }
 }
+
+Functions = {
+    HasKeys = function()
+        return true
+    end
+}

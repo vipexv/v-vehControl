@@ -186,6 +186,9 @@ RegisterNuiCallback("vehmenu:toggleoption", function(data, cb)
 
     if option == "engine" then
         local engineRunning = GetIsVehicleEngineRunning(currVeh)
+
+        if not engineRunning and not Functions.HasKeys() then return Debug("Has Keys check returned false.") end
+
         SetVehicleEngineOn(currVeh, not engineRunning, false, true)
         Debug("Engine set to: ", not engineRunning)
         -- The engine takes a bit to start up, updating state after that.
